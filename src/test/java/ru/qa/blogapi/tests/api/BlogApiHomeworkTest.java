@@ -15,12 +15,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.junit.jupiter.api.Tag;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
 
     @Test
+    @Tag("smoke")
     @DisplayName("POST /api/auth/register -> should register user with valid required fields")
     void shouldRegisterUserWithValidRequiredFields() {
         String email = randomEmail();
@@ -47,6 +50,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("POST /api/auth/register -> should return validation error for invalid email")
     void shouldReturnValidationErrorForInvalidEmailOnRegistration() {
         Map<String, Object> body = registrationBody("invalid-email", "SecurePass123!");
@@ -64,6 +68,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("smoke")
     @DisplayName("POST /api/login -> should login with valid credentials")
     void shouldLoginWithValidCredentials() {
         String email = randomEmail();
@@ -83,6 +88,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("POST /api/login -> should return unauthorized for wrong password")
     void shouldReturnUnauthorizedForWrongPassword() {
         String email = randomEmail();
@@ -103,6 +109,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("POST /api/token/refresh -> should refresh access token by refresh token")
     void shouldRefreshAccessToken() {
         String email = randomEmail();
@@ -136,6 +143,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("smoke")
     @DisplayName("GET /api/profile -> should return current user profile for authorized user")
     void shouldReturnCurrentUserProfile() {
         given()
@@ -149,6 +157,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("PUT /api/profile -> should update current user profile")
     void shouldUpdateCurrentUserProfile() {
         String newFirstName = "Updated_" + suffix(5);
@@ -171,6 +180,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("GET /api/posts -> should return paginated list of posts")
     void shouldReturnPaginatedPostsList() {
         given()
@@ -189,6 +199,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("GET /api/posts -> should filter posts by category")
     void shouldFilterPostsByCategory() {
         PostCreateRequest request = new PostCreateRequest(
@@ -214,6 +225,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("smoke")
     @DisplayName("POST /api/posts -> should create published post")
     void shouldCreatePublishedPost() {
         String title = "Published " + suffix(6);
@@ -236,6 +248,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("POST /api/posts -> should create draft post")
     void shouldCreateDraftPost() {
         String title = "Draft " + suffix(6);
@@ -255,6 +268,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("GET /api/posts/my -> should return only current user posts")
     void shouldReturnOnlyCurrentUserPosts() {
         PostCreateRequest request = new PostCreateRequest(
@@ -279,6 +293,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("e2e")
     @DisplayName("GET /api/posts/feed -> should return posts from other users")
     void shouldReturnFeedPosts() {
         AuthApiClient secondClient = new AuthApiClient(requestSpec);
@@ -311,6 +326,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("smoke")
     @DisplayName("GET /api/posts/{id} -> should return single post by id")
     void shouldReturnSinglePostById() {
         String title = "Single Post " + suffix(6);
@@ -341,6 +357,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("PUT /api/posts/{id} -> should update existing post")
     void shouldUpdateExistingPost() {
         PostCreateRequest createRequest = new PostCreateRequest(
@@ -379,6 +396,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("DELETE /api/posts/{id} -> should delete post")
     void shouldDeletePost() {
         PostCreateRequest request = new PostCreateRequest(
@@ -415,6 +433,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("POST /api/posts/{id}/favorite -> should add post to favorites")
     void shouldAddPostToFavorites() {
         PostCreateRequest request = new PostCreateRequest(
@@ -447,6 +466,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("GET /api/posts/favorites -> should return favorite posts")
     void shouldReturnFavoritePosts() {
         PostCreateRequest request = new PostCreateRequest(
@@ -486,6 +506,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("POST /api/files/upload -> should upload image file for post")
     void shouldUploadImageFileForPost() {
         byte[] pngBytes = Base64.getDecoder().decode(
@@ -508,6 +529,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("GET /api/files/{id} -> should return uploaded file metadata")
     void shouldReturnUploadedFileMetadata() {
         byte[] pngBytes = Base64.getDecoder().decode(
@@ -542,6 +564,7 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
     }
 
     @Test
+    @Tag("regression")
     @DisplayName("POST /api/profile/report/{id} -> should create report for user")
     void shouldCreateUserReport() {
         String targetEmail = randomEmail();

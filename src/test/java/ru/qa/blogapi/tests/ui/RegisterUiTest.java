@@ -1,6 +1,7 @@
 package ru.qa.blogapi.tests.ui;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RegisterUiTest extends BaseUiTest {
 
     @Test
+    @Tag("e2e")
     @DisplayName("UI /register -> should register user from registration page")
     void shouldRegisterUserFromRegisterPage() {
         String email = randomEmail();
