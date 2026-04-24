@@ -98,8 +98,8 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
                 .then()
                 .statusCode(401)
                 .body("error", nullValue())
-                .body("error.code", equalTo(401))
-                .body("error.message", notNullValue());
+                .body("code", equalTo(401))
+                .body("message", equalTo("Invalid credentials."));
     }
 
     @Test
@@ -610,11 +610,5 @@ class BlogApiHomeworkTest extends BaseAuthorizedApiTest {
                 .toString()
                 .replace("-", "")
                 .substring(0, length);
-    }
-
-    class MyClass {
-        private MyClass() {
-            //тест2
-        }
     }
 }
