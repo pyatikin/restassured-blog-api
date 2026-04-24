@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 2,
+  "agentName": "LAPTOP-0G8QEEIL",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus22.actions.githubusercontent.com/ZP1JysTZjmQc83cefxdxQgRYEt3jQ1cwVJOJiCx9VbwcaLnCAh/",
+  "gitHubUrl": "https://github.com/pyatikin/restassured-blog-api",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}
