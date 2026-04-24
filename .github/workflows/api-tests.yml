@@ -20,7 +20,7 @@ jobs:
           java-version: '17'
 
       - name: Run smoke tests
-        run: mvn clean test -Dtest.groups=smoke
+        run: mvn clean test -Dgroups=smoke
 
   regression:
     runs-on: self-hosted
@@ -36,7 +36,7 @@ jobs:
           java-version: '17'
 
       - name: Run regression tests
-        run: mvn clean test -Dtest.groups=regression
+        run: mvn clean test -Dgroups=regression
 
   e2e:
     runs-on: self-hosted
@@ -52,4 +52,4 @@ jobs:
           java-version: '17'
 
       - name: Run e2e tests
-        run: mvn clean test -Dtest.groups=e2e
+        run: mvn clean test -Dgroups=e2e
